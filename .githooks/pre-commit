@@ -1,3 +1,2 @@
 #!/bin/sh
-npm run build:index
 npx lint-staged
