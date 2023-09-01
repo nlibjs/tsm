@@ -1,5 +1,7 @@
 //@ts-check
 import { fileURLToPath } from 'node:url';
+import { resolve, extname } from 'node:path';
+import { stat } from 'node:fs/promises';
 import * as esbuild from 'esbuild';
 
 /**
@@ -26,7 +28,7 @@ import * as esbuild from 'esbuild';
  * @returns {Promise<LoadResult>}
  */
 export const load = async (url, context, nextLoad) => {
-  if (/\.m?[tj]sx?$/.test(url)) {
+  if (!url.includes('/node_modules/') && /\.m?[tj]sx?$/.test(url)) {
     const result = await esbuild.build({
       entryPoints: [fileURLToPath(url)],
       plugins: [markExternalPlugin],
@@ -48,12 +50,30 @@ export const load = async (url, context, nextLoad) => {
 const markExternalPlugin = {
   name: 'mark-external',
   setup(build) {
-    build.onResolve({ filter: /./ }, (args) => {
+    /** @param {string} file */
+    const checkFile = async (file) => {
+      await stat(file);
+      return file;
+    };
+    build.onResolve({ filter: /./ }, async (args) => {
       if (!args.importer) {
         return null;
       }
       if (args.path.startsWith('.')) {
-        return { path: args.path.replace(/\.mjs$/, '.mts'), external: true };
+        const resolved = resolve(args.resolveDir, args.path);
+        const results = await Promise.allSettled([
+          checkFile(resolved),
+          checkFile(resolved.replace(/js$/, 'ts')),
+        ]);
+        for (const result of results) {
+          if (result.status === 'fulfilled') {
+            const ext = extname(result.value);
+            return {
+              path: `${args.path.slice(0, -ext.length)}${ext}`,
+              external: true,
+            };
+          }
+        }
       }
       return { path: args.path, external: true };
     });
