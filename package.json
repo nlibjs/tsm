@@ -1,6 +1,6 @@
 {
-  "name": "@nlib/mts",
-  "description": "Thin .mts loader and test runner",
+  "name": "@nlib/tsm",
+  "description": "Thin .ts/.mts loader & test runner",
   "publishConfig": {
     "access": "public"
   },
@@ -11,8 +11,8 @@
     "email": "kei.itof@gmail.com",
     "url": "https://gojabako.zone"
   },
-  "homepage": "https://github.com/nlibjs/mts",
-  "repository": "https://github.com/nlibjs/mts",
+  "homepage": "https://github.com/nlibjs/tsm",
+  "repository": "https://github.com/nlibjs/tsm",
   "engines": {
     "node": ">=18"
   },
@@ -23,8 +23,8 @@
   ],
   "main": "./loader.mjs",
   "bin": {
-    "mts-test": "./test.mjs",
-    "nlib-mts-test": "./test.mjs"
+    "tsm-test": "./test.mjs",
+    "nlib-tsm-test": "./test.mjs"
   },
   "scripts": {
     "lint": "eslint loader.mjs test",

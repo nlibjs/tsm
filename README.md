@@ -1,17 +1,17 @@
-# @nlib/mts
+# @nlib/tsm
 
 Thin .mts loader and test runner
 
 ## Install
 
 ```
-npm install @nlib/mts
+npm install @nlib/tsm
 ```
 
-## Usage: Run \*.mts file
+## Usage: Run \*.ts/\*.mts file
 
 ```
-node --experimental-loader=@nlib/mts path/to/your/script.mts
+node --experimental-loader=@nlib/tsm path/to/your/script.mts
 ```
 
 [`loader.mjs`](./loader.mjs) is a [Loader](https://nodejs.org/api/esm.html#loaders) to customize the default module resolution. It exports the [`load`](https://nodejs.org/api/esm.html#loadurl-context-nextload) function that loads modules with [esbuild](https://esbuild.github.io/).
