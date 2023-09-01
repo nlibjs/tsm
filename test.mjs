@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
  * https://nodejs.org/api/test.html#test-runner-execution-model
  */

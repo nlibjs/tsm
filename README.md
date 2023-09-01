@@ -20,8 +20,8 @@ node --experimental-loader=@nlib/mts path/to/your/script.mts
 
 Node.js added the stable [`node:test`](https://nodejs.org/api/test.html) in v20. We can run tests with `node --test`. It searches for test files when a directory is specified as arguments. But it doesn't search for `*.mts` (even with the `--experimental-loader` option). So, you must pass the files one by one to run it.
 
-The `@nlib/tsm-test` will search for the test file for you and pass it to `node --test`.
+The `tsm-test` will search for the test file for you and pass it to `node --test`.
 
 ```sh
-npx @nlib/tsm-test src
+npx tsm-test src
 ```
