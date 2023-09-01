@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.0.4 (2023-09-01)
+
+### Bug Fixes
+
+- add missing hashbang ([8628617](https://github.com/nlibjs/mts/commit/86286170dd55c6755b7c4429afdce7c06c55991a))
+
 ## v0.0.3 (2023-09-01)
 
 ### Bug Fixes
