@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.0.3 (2023-09-01)
+
+### Bug Fixes
+
+- ignore files in node_modules ([47c3b93](https://github.com/nlibjs/mts/commit/47c3b9345f06747b7e6daa6185d2fb19138ce046))
+- check .mjs and .mts and return succeeded ([ec2b1a9](https://github.com/nlibjs/mts/commit/ec2b1a9cfeb346a035fbe726636c6dbc8f1cadde))
+
 ## v0.0.2 (2023-09-01)
 
 ### Features
