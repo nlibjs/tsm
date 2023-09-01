@@ -11,7 +11,7 @@ npm install @nlib/mts
 ## Usage: Run \*.mts file
 
 ```
-node --experimental-loader=node_modules/@nlib/mts/loader.mjs path/to/your/script.mts
+node --experimental-loader=@nlib/mts path/to/your/script.mts
 ```
 
 [`loader.mjs`](./loader.mjs) is a [Loader](https://nodejs.org/api/esm.html#loaders) to customize the default module resolution. It exports the [`load`](https://nodejs.org/api/esm.html#loadurl-context-nextload) function that loads modules with [esbuild](https://esbuild.github.io/).

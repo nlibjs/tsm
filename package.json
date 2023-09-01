@@ -21,6 +21,7 @@
     "loader.mjs",
     "test.mjs"
   ],
+  "main": "./loader.mjs",
   "bin": {
     "mts-test": "./test.mjs",
     "nlib-mts-test": "./test.mjs"
