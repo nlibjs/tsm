@@ -28,8 +28,7 @@ import * as esbuild from 'esbuild';
  * @returns {Promise<LoadResult>}
  */
 export const load = async (url, context, nextLoad) => {
-  // if (!url.includes('/node_modules/') && /\.m?[tj]sx?$/.test(url)) {
-  if (/\.m?[tj]sx?$/.test(url)) {
+  if (!url.includes('/node_modules/') && /\.m?[tj]sx?$/.test(url)) {
     const result = await esbuild.build({
       entryPoints: [fileURLToPath(url)],
       plugins: [markExternalPlugin],
