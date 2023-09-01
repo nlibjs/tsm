@@ -32,7 +32,7 @@
     "test:directory": "node test.mjs test/directory",
     "test:pattern": "node test.mjs \"test/directory/**/*.test.mts\"",
     "test:file": "node test.mjs \"test/directory/add.test.mts\"",
-    "test:exclude": "node test.mjs --exclude '**/excluded' -- test/exclude",
+    "test:exclude": "node test.mjs --exclude \"**/excluded\" -- test/exclude",
     "version": "npx @nlib/changelog --output CHANGELOG.md && git add CHANGELOG.md"
   },
   "dependencies": {
