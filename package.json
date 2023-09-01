@@ -45,6 +45,7 @@
     "@nlib/eslint-config": "3.20.1",
     "@nlib/githooks": "0.2.0",
     "@nlib/lint-commit": "1.0.1",
+    "@nlib/typing": "1.1.0",
     "@types/node": "20.5.7",
     "eslint": "8.48.0",
     "lint-staged": "14.0.1",
@@ -55,7 +56,17 @@
     "extends": "@nlib/eslint-config",
     "env": {
       "node": true
-    }
+    },
+    "overrides": [
+      {
+        "files": [
+          "*.test.*"
+        ],
+        "rules": {
+          "@typescript-eslint/no-floating-promises": "off"
+        }
+      }
+    ]
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown",
