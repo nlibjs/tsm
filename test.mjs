@@ -24,7 +24,11 @@ program
   .option('-e, --exclude <patterns...>', 'Patterns to exclude files')
   .option(
     '-c, --coverage',
-    'Enables --experimental-test-coverage\nhttps://nodejs.org/api/cli.html#--experimental-test-coverage',
+    [
+      'Enables --experimental-test-coverage',
+      'https://nodejs.org/api/cli.html#--experimental-test-coverage',
+      'This is for human readability. Use the NODE_V8_COVERAGE for the coverage report.',
+    ].join('\n'),
   )
   .parse();
 

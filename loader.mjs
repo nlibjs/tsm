@@ -1,7 +1,7 @@
 //@ts-check
 import { fileURLToPath } from 'node:url';
-import { resolve, extname } from 'node:path';
-import { stat } from 'node:fs/promises';
+import { resolve, extname, relative, dirname } from 'node:path';
+import { readFile, stat } from 'node:fs/promises';
 import * as esbuild from 'esbuild';
 
 /**
@@ -29,19 +29,34 @@ import * as esbuild from 'esbuild';
  */
 export const load = async (url, context, nextLoad) => {
   if (!url.includes('/node_modules/') && /\.m?[tj]sx?$/.test(url)) {
-    const result = await esbuild.build({
-      entryPoints: [fileURLToPath(url)],
+    const filePath = fileURLToPath(url);
+    /** @type {import('esbuild').BuildOptions} */
+    const options = {
+      entryPoints: [filePath],
       plugins: [markExternalPlugin],
       format: 'esm',
       bundle: true,
-      write: false,
-      sourcemap: 'inline',
-    });
-    return {
-      format: 'module',
-      shortCircuit: true,
-      source: result.outputFiles[0].contents,
     };
+    const sourcemap = process.env.NODE_V8_COVERAGE;
+    /** @type {Uint8Array | undefined} */
+    let source;
+    if (sourcemap) {
+      const cwd = process.cwd();
+      const outfile = resolve(cwd, sourcemap, relative(cwd, filePath));
+      const relativePath = relative(dirname(filePath), outfile);
+      await esbuild.build({
+        ...options,
+        write: true,
+        footer: { js: `//# sourceMappingURL=${relativePath}.map` },
+        sourcemap: 'external',
+        outfile,
+      });
+      source = await readFile(outfile);
+    } else {
+      const result = await esbuild.build({ ...options, write: false });
+      source = result.outputFiles[0].contents;
+    }
+    return { format: 'module', shortCircuit: true, source };
   }
   return nextLoad(url, context);
 };
