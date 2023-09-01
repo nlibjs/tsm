@@ -118,8 +118,4 @@ command += ' --test';
 for (const file of files) {
   command += ` ${fileURLToPath(file)}`;
 }
-execSync(command, {
-  cwd: rootDir,
-  stdio: 'inherit',
-  shell: true,
-});
+execSync(command, { cwd: rootDir, stdio: 'inherit', shell: true });

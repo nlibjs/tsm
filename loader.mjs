@@ -1,8 +1,10 @@
 //@ts-check
+import * as fs from 'node:fs/promises';
+import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { resolve, extname, relative, dirname } from 'node:path';
-import { readFile, stat } from 'node:fs/promises';
 import * as esbuild from 'esbuild';
+
+const sourcemap = process.env.NODE_V8_COVERAGE;
 
 /**
  * https://nodejs.org/api/esm.html#resolvespecifier-context-nextresolve
@@ -30,20 +32,24 @@ import * as esbuild from 'esbuild';
 export const load = async (url, context, nextLoad) => {
   if (!url.includes('/node_modules/') && /\.m?[tj]sx?$/.test(url)) {
     const filePath = fileURLToPath(url);
-    /** @type {import('esbuild').BuildOptions} */
+    /** @type {esbuild.BuildOptions} */
     const options = {
       entryPoints: [filePath],
       plugins: [markExternalPlugin],
       format: 'esm',
       bundle: true,
     };
-    const sourcemap = process.env.NODE_V8_COVERAGE;
     /** @type {Uint8Array | undefined} */
     let source;
     if (sourcemap) {
       const cwd = process.cwd();
-      const outfile = resolve(cwd, sourcemap, relative(cwd, filePath));
-      const relativePath = relative(dirname(filePath), outfile);
+      const outfile = path.resolve(
+        cwd,
+        sourcemap,
+        path.relative(cwd, filePath).replace(/ts$/, 'js'),
+      );
+      const relativePath = path.relative(filePath, outfile);
+      /** @todo This won't work. */
       await esbuild.build({
         ...options,
         write: true,
@@ -51,7 +57,7 @@ export const load = async (url, context, nextLoad) => {
         sourcemap: 'external',
         outfile,
       });
-      source = await readFile(outfile);
+      source = await fs.readFile(outfile);
     } else {
       const result = await esbuild.build({ ...options, write: false });
       source = result.outputFiles[0].contents;
@@ -66,28 +72,30 @@ const markExternalPlugin = {
   name: 'mark-external',
   setup(build) {
     /** @param {string} file */
-    const checkFile = async (file) => {
-      await stat(file);
-      return file;
+    const checkFile = async (file) => (await fs.stat(file)) && file;
+    /** @param {esbuild.OnResolveArgs} args */
+    const findImportee = async (args) => {
+      const resolved = path.resolve(args.resolveDir, args.path);
+      const results = await Promise.allSettled([
+        checkFile(resolved),
+        checkFile(resolved.replace(/js$/, 'ts')),
+      ]);
+      for (const result of results) {
+        if (result.status === 'fulfilled') {
+          const ext = path.extname(result.value);
+          return `${args.path.slice(0, -ext.length)}${ext}`;
+        }
+      }
+      return null;
     };
     build.onResolve({ filter: /./ }, async (args) => {
       if (!args.importer) {
         return null;
       }
       if (args.path.startsWith('.')) {
-        const resolved = resolve(args.resolveDir, args.path);
-        const results = await Promise.allSettled([
-          checkFile(resolved),
-          checkFile(resolved.replace(/js$/, 'ts')),
-        ]);
-        for (const result of results) {
-          if (result.status === 'fulfilled') {
-            const ext = extname(result.value);
-            return {
-              path: `${args.path.slice(0, -ext.length)}${ext}`,
-              external: true,
-            };
-          }
+        const importee = await findImportee(args);
+        if (importee) {
+          return { path: importee, external: true };
         }
       }
       return { path: args.path, external: true };
