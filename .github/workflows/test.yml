@@ -25,7 +25,6 @@ jobs:
           node-version: 20.x
           cache: npm
       - run: npm ci
-      - run: npm test
-        env:
-          NODE_V8_COVERAGE: coverage
+      - run: npx c8 npm run test
+      - run: npx c8 report --reporter=text-lcov > coverage.lcov
       - uses: codecov/codecov-action@v3
