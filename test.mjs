@@ -105,7 +105,7 @@ const files = [];
 
 let command = 'node';
 const loaderFile = new URL('./loader.mjs', import.meta.url);
-command += ` --experimental-loader=${fileURLToPath(loaderFile)}`;
+command += ` --experimental-loader=${loaderFile}`;
 if (coverage) {
   command += ' --experimental-test-coverage';
 }
