@@ -2,6 +2,9 @@
 
 Thin .mts loader and test runner
 
+[![.github/workflows/test.yml](https://github.com/nlibjs/tsm/actions/workflows/test.yml/badge.svg)](https://github.com/nlibjs/tsm/actions/workflows/test.yml)
+[![codecov](https://codecov.io/gh/nlibjs/tsm/graph/badge.svg?token=5fr51K5wli)](https://codecov.io/gh/nlibjs/tsm)
+
 ## Install
 
 ```
