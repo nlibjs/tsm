@@ -1,42 +1,53 @@
 # Changelog
 
-## v0.0.4 (2023-09-01)
+## v0.1.0 (2023-09-02)
 
-### Bug Fixes
+### Breaking Changes
 
-- add missing hashbang ([8628617](https://github.com/nlibjs/mts/commit/86286170dd55c6755b7c4429afdce7c06c55991a))
-
-## v0.0.3 (2023-09-01)
-
-### Bug Fixes
-
-- ignore files in node_modules ([47c3b93](https://github.com/nlibjs/mts/commit/47c3b9345f06747b7e6daa6185d2fb19138ce046))
-- check .mjs and .mts and return succeeded ([ec2b1a9](https://github.com/nlibjs/mts/commit/ec2b1a9cfeb346a035fbe726636c6dbc8f1cadde))
-
-## v0.0.2 (2023-09-01)
-
-### Features
-
-- add the main field of package.json ([61a534a](https://github.com/nlibjs/mts/commit/61a534a28c7c041c49306736d741d42d61ddb71d))
-
-### Bug Fixes
-
-- pass file url to --experimental-loader ([aa2feef](https://github.com/nlibjs/mts/commit/aa2feefb435777d4d5c133a12c58469081db75a1))
+- rename from mts to tsm ([8e67aa8](https://github.com/nlibjs/tsm/commit/8e67aa8d375e0a458cc0c742c4e311093aef001d))
 
 ### Tests
 
-- fix the quotes ([7c3913b](https://github.com/nlibjs/mts/commit/7c3913bb6571ac9752963290190a7aeaacab613d))
+- normalize path.sep ([9a6f1c4](https://github.com/nlibjs/tsm/commit/9a6f1c4e4e63ffae0fb32e0985879b64bf26af24))
+- sourcemaps ([b5056ba](https://github.com/nlibjs/tsm/commit/b5056bae1014ab81b38a64bd3fe6f65cfbd9266b))
+- importing .ts ([e947310](https://github.com/nlibjs/tsm/commit/e9473100a9862dd660f48652acb49e567ffa795e))
+- remove @nlib/typing ([6006a79](https://github.com/nlibjs/tsm/commit/6006a79cb7eea5ceda40079ecb97a44790ef7c3e))
+
+### Documentation
+
+- add badges ([ed5e64b](https://github.com/nlibjs/tsm/commit/ed5e64b3fc317446a0f921c7e8fde3e708a889de))
 
 ### Continuous Integration
 
-- test on multiple os ([c828a7e](https://github.com/nlibjs/mts/commit/c828a7e8b8489224ea334b6584f71232b0440a32))
+- run test with c8 ([dc0b07d](https://github.com/nlibjs/tsm/commit/dc0b07de946f09ad9b705909904c4e3c577a93c2))
 
 ### Dependency Upgrades
 
-- uninstall mocha ([b0f62fe](https://github.com/nlibjs/mts/commit/b0f62fea4b8dd70cc2032b8635863cc7508489f8))
+- @types/node:20.5.7→20.5.8 ([c5cd760](https://github.com/nlibjs/tsm/commit/c5cd760451225ddd25064f88aa89c9a8d6ac8d22))
+- @nlib/eslint-config:3.20.1→3.20.2 ([addfc34](https://github.com/nlibjs/tsm/commit/addfc3423bddc35b6458552b5c4a964c89bf723d))
 
-## v0.0.1 (2023-09-01)
+## v0.0.4 (2023-09-01)
 
 ### Features
 
-- the first commit ([8f339db](https://github.com/nlibjs/mts/commit/8f339db587aab4c63a9c3fdba984e64b2905d848))
+- add the main field of package.json ([61a534a](https://github.com/nlibjs/tsm/commit/61a534a28c7c041c49306736d741d42d61ddb71d))
+- the first commit ([8f339db](https://github.com/nlibjs/tsm/commit/8f339db587aab4c63a9c3fdba984e64b2905d848))
+
+### Bug Fixes
+
+- add missing hashbang ([8628617](https://github.com/nlibjs/tsm/commit/86286170dd55c6755b7c4429afdce7c06c55991a))
+- ignore files in node_modules ([47c3b93](https://github.com/nlibjs/tsm/commit/47c3b9345f06747b7e6daa6185d2fb19138ce046))
+- check .mjs and .mts and return succeeded ([ec2b1a9](https://github.com/nlibjs/tsm/commit/ec2b1a9cfeb346a035fbe726636c6dbc8f1cadde))
+- pass file url to --experimental-loader ([aa2feef](https://github.com/nlibjs/tsm/commit/aa2feefb435777d4d5c133a12c58469081db75a1))
+
+### Tests
+
+- fix the quotes ([7c3913b](https://github.com/nlibjs/tsm/commit/7c3913bb6571ac9752963290190a7aeaacab613d))
+
+### Continuous Integration
+
+- test on multiple os ([c828a7e](https://github.com/nlibjs/tsm/commit/c828a7e8b8489224ea334b6584f71232b0440a32))
+
+### Dependency Upgrades
+
+- uninstall mocha ([b0f62fe](https://github.com/nlibjs/tsm/commit/b0f62fea4b8dd70cc2032b8635863cc7508489f8))
