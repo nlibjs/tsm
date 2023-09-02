@@ -25,10 +25,15 @@ program
   .option(
     '-c, --coverage',
     [
-      'Enables --experimental-test-coverage',
+      'Enables --experimental-test-coverage. This is for human readability.',
       'https://nodejs.org/api/cli.html#--experimental-test-coverage',
-      'This is for human readability. Use the NODE_V8_COVERAGE for the coverage report.',
+      'Use NODE_V8_COVERAGE if you only need coverage data.',
+      'https://nodejs.org/api/cli.html#node_v8_coveragedir',
     ].join('\n'),
+  )
+  .option(
+    '--nocoverage',
+    'Overwrites NODE_V8_COVERAGE with "" (for internal testing)',
   )
   .parse();
 
@@ -65,7 +70,12 @@ const {
   exclude: excludePatterns = [],
   /** @type {boolean} */
   coverage = false,
+  /** @type {boolean} */
+  nocoverage = false,
 } = program.opts();
+if (nocoverage) {
+  process.env.NODE_V8_COVERAGE = '';
+}
 const files = [];
 {
   excludePatterns.push('**/node_modules', '**/.*');
@@ -114,6 +124,7 @@ command += ` --experimental-loader=${loaderFile}`;
 if (coverage) {
   command += ' --experimental-test-coverage';
 }
+command += ' --enable-source-maps';
 command += ' --test';
 for (const file of files) {
   command += ` ${fileURLToPath(file)}`;

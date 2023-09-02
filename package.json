@@ -33,6 +33,8 @@
     "test:pattern": "node test.mjs \"test/directory/**/*.test.mts\"",
     "test:file": "node test.mjs \"test/directory/add.test.mts\"",
     "test:exclude": "node test.mjs --exclude \"**/excluded\" -- test/exclude",
+    "test:coverage-off": "node test.mjs --nocoverage test/coverage-off",
+    "test:coverage-on": "node test.mjs --coverage test/coverage-on",
     "version": "npx @nlib/changelog --output CHANGELOG.md && git add CHANGELOG.md"
   },
   "dependencies": {
