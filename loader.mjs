@@ -32,26 +32,44 @@ const sourceRoot =
  * @returns {Promise<LoadResult>}
  */
 export const load = async (url, context, nextLoad) => {
-  if (!url.includes('/node_modules/') && /\.m?[tj]sx?$/.test(url)) {
+  if (url.startsWith('file://')) {
     const filePath = fileURLToPath(url);
-    /** @type {esbuild.BuildOptions} */
-    const options = {
-      entryPoints: [filePath],
-      plugins: [markExternalPlugin],
-      format: 'esm',
-      bundle: true,
-      write: false,
-    };
-    if (sourceRoot) {
-      options.sourcemap = 'inline';
-      options.sourceRoot = sourceRoot;
+    if (!url.includes('/node_modules/') && /\.m?[tj]sx?$/.test(url)) {
+      /** @type {esbuild.BuildOptions} */
+      const options = {
+        entryPoints: [filePath],
+        plugins: [markExternalPlugin],
+        format: 'esm',
+        bundle: true,
+        write: false,
+      };
+      if (sourceRoot) {
+        options.sourcemap = 'inline';
+        options.sourceRoot = sourceRoot;
+      }
+      const result = await esbuild.build({ ...options, write: false });
+      return {
+        format: 'module',
+        shortCircuit: true,
+        source: result.outputFiles[0].contents,
+      };
     }
-    const result = await esbuild.build({ ...options, write: false });
-    return {
-      format: 'module',
-      shortCircuit: true,
-      source: result.outputFiles[0].contents,
-    };
+    if (!/[^/]\.\w+$/.test(url)) {
+      /**
+       * Workaround for ERR_UNKNOWN_FILE_EXTENSION
+       * Read the file here instead of nextLoad if extension is missing.
+       * @example
+       * $ NODE_OPTIONS='--experimental-loader=@nlib/tsm' next
+       * > TypeError [ERR_UNKNOWN_FILE_EXTENSION]: Unknown file extension "" for
+       * > node_modules/next/dist/bin/next
+       */
+      const source = await fs.readFile(filePath, 'utf8');
+      let format = 'commonjs';
+      if (/^;?\s*(?:import|export)\W/.test(source)) {
+        format = 'module';
+      }
+      return { format, shortCircuit: true, source };
+    }
   }
   return nextLoad(url, context);
 };
