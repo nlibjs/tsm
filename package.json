@@ -35,6 +35,10 @@
     "test:exclude": "node test.mjs --exclude \"**/excluded\" -- test/exclude",
     "test:coverage-off": "node test.mjs --nocoverage test/coverage-off",
     "test:coverage-on": "node test.mjs --coverage test/coverage-on",
+    "test:cjs1": "node test.mjs test/bin/cjs1",
+    "test:cjs2": "node test.mjs test/bin/cjs2",
+    "test:mjs1": "node test.mjs test/bin/mjs1",
+    "test:mjs2": "node test.mjs test/bin/mjs2",
     "version": "npx @nlib/changelog --output CHANGELOG.md && git add CHANGELOG.md"
   },
   "dependencies": {
