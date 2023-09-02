@@ -1,6 +1,6 @@
 {
-  "name": "@nlib/mts",
-  "description": "Thin .mts loader and test runner",
+  "name": "@nlib/tsm",
+  "description": "Thin .ts/.mts loader & test runner",
   "publishConfig": {
     "access": "public"
   },
@@ -11,8 +11,8 @@
     "email": "kei.itof@gmail.com",
     "url": "https://gojabako.zone"
   },
-  "homepage": "https://github.com/nlibjs/mts",
-  "repository": "https://github.com/nlibjs/mts",
+  "homepage": "https://github.com/nlibjs/tsm",
+  "repository": "https://github.com/nlibjs/tsm",
   "engines": {
     "node": ">=18"
   },
@@ -23,8 +23,8 @@
   ],
   "main": "./loader.mjs",
   "bin": {
-    "mts-test": "./test.mjs",
-    "nlib-mts-test": "./test.mjs"
+    "tsm-test": "./test.mjs",
+    "nlib-tsm-test": "./test.mjs"
   },
   "scripts": {
     "lint": "eslint loader.mjs test",
@@ -33,6 +33,8 @@
     "test:pattern": "node test.mjs \"test/directory/**/*.test.mts\"",
     "test:file": "node test.mjs \"test/directory/add.test.mts\"",
     "test:exclude": "node test.mjs --exclude \"**/excluded\" -- test/exclude",
+    "test:coverage-off": "node test.mjs --nocoverage test/coverage-off",
+    "test:coverage-on": "node test.mjs --coverage test/coverage-on",
     "version": "npx @nlib/changelog --output CHANGELOG.md && git add CHANGELOG.md"
   },
   "dependencies": {
@@ -42,10 +44,10 @@
   },
   "devDependencies": {
     "@nlib/changelog": "0.3.1",
-    "@nlib/eslint-config": "3.20.1",
+    "@nlib/eslint-config": "3.20.2",
     "@nlib/githooks": "0.2.0",
     "@nlib/lint-commit": "1.0.1",
-    "@types/node": "20.5.7",
+    "@types/node": "20.5.8",
     "eslint": "8.48.0",
     "lint-staged": "14.0.1",
     "npm-run-all": "4.1.5",

@@ -8,13 +8,13 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { program } from 'commander';
 import mm from 'micromatch';
 
-/** @type {{version: string}} */
-const { version } = JSON.parse(
+/** @type {{name: string, version: string}} */
+const { name, version } = JSON.parse(
   await readFile(new URL('./package.json', import.meta.url)),
 );
 
 program
-  .name('nlib-mts-test')
+  .name(name)
   .version(version)
   .usage('[options] -- [directoriesOrPatterns...]')
   .argument(
@@ -25,10 +25,15 @@ program
   .option(
     '-c, --coverage',
     [
-      'Enables --experimental-test-coverage',
+      'Enables --experimental-test-coverage. This is for human readability.',
       'https://nodejs.org/api/cli.html#--experimental-test-coverage',
-      'This is for human readability. Use the NODE_V8_COVERAGE for the coverage report.',
+      'Use NODE_V8_COVERAGE if you only need coverage data.',
+      'https://nodejs.org/api/cli.html#node_v8_coveragedir',
     ].join('\n'),
+  )
+  .option(
+    '--nocoverage',
+    'Overwrites NODE_V8_COVERAGE with "" (for internal testing)',
   )
   .parse();
 
@@ -65,7 +70,12 @@ const {
   exclude: excludePatterns = [],
   /** @type {boolean} */
   coverage = false,
+  /** @type {boolean} */
+  nocoverage = false,
 } = program.opts();
+if (nocoverage) {
+  process.env.NODE_V8_COVERAGE = '';
+}
 const files = [];
 {
   excludePatterns.push('**/node_modules', '**/.*');
@@ -96,8 +106,8 @@ const files = [];
       if (!file.pathname.endsWith('/')) {
         file.pathname += '/';
       }
-      for (const name of await readdir(file)) {
-        yield* listFiles(new URL(name, file));
+      for (const fileName of await readdir(file)) {
+        yield* listFiles(new URL(fileName, file));
       }
     } else if (stats.isFile() && isTestFile(file)) {
       yield file;
@@ -114,6 +124,7 @@ command += ` --experimental-loader=${loaderFile}`;
 if (coverage) {
   command += ' --experimental-test-coverage';
 }
+command += ' --enable-source-maps';
 command += ' --test';
 for (const file of files) {
   command += ` ${fileURLToPath(file)}`;

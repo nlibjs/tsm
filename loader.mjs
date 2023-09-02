@@ -1,10 +1,12 @@
+/* eslint-disable no-console */
 //@ts-check
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import * as esbuild from 'esbuild';
 
-const sourcemap = process.env.NODE_V8_COVERAGE;
+const sourceRoot =
+  process.env.NODE_V8_COVERAGE && `${pathToFileURL(process.cwd())}/`;
 
 /**
  * https://nodejs.org/api/esm.html#resolvespecifier-context-nextresolve
@@ -38,31 +40,18 @@ export const load = async (url, context, nextLoad) => {
       plugins: [markExternalPlugin],
       format: 'esm',
       bundle: true,
+      write: false,
     };
-    /** @type {Uint8Array | undefined} */
-    let source;
-    if (sourcemap) {
-      const cwd = process.cwd();
-      const outfile = path.resolve(
-        cwd,
-        sourcemap,
-        path.relative(cwd, filePath).replace(/ts$/, 'js'),
-      );
-      const relativePath = path.relative(filePath, outfile);
-      /** @todo This won't work. */
-      await esbuild.build({
-        ...options,
-        write: true,
-        footer: { js: `//# sourceMappingURL=${relativePath}.map` },
-        sourcemap: 'external',
-        outfile,
-      });
-      source = await fs.readFile(outfile);
-    } else {
-      const result = await esbuild.build({ ...options, write: false });
-      source = result.outputFiles[0].contents;
+    if (sourceRoot) {
+      options.sourcemap = 'inline';
+      options.sourceRoot = sourceRoot;
     }
-    return { format: 'module', shortCircuit: true, source };
+    const result = await esbuild.build({ ...options, write: false });
+    return {
+      format: 'module',
+      shortCircuit: true,
+      source: result.outputFiles[0].contents,
+    };
   }
   return nextLoad(url, context);
 };
