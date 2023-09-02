@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.1 (2023-09-02)
+
+### Features
+
+- read fileURL without extension ([25218b9](https://github.com/nlibjs/tsm/commit/25218b9f50ad92803bdb8f201d498970cbf52060))
+
 ## v0.1.0 (2023-09-02)
 
 ### Breaking Changes
