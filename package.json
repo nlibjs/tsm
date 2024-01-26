@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "commander": "11.1.0",
-    "esbuild": "0.19.11",
+    "esbuild": "0.19.12",
     "micromatch": "4.0.5"
   },
   "devDependencies": {
