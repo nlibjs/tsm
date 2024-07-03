@@ -44,7 +44,7 @@
   "dependencies": {
     "commander": "11.1.0",
     "esbuild": "0.20.2",
-    "micromatch": "4.0.5"
+    "micromatch": "4.0.7"
   },
   "devDependencies": {
     "@nlib/changelog": "0.3.1",
