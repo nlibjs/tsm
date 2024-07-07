@@ -1,5 +1,24 @@
 # Changelog
 
+## v0.1.2 (2024-07-07)
+
+### Features
+
+- add register.mjs ([602de6a](https://github.com/nlibjs/tsm/commit/602de6a1b234bb11d0c441b450040e315d408714))
+
+### Bug Fixes
+
+- eslint errors ([d375cdb](https://github.com/nlibjs/tsm/commit/d375cdb8631a869ff7de078c8402e041d99d2a9b))
+
+### Dependency Upgrades
+
+- @nlib/eslint-config:3.20.3→3.20.5 ([44ba431](https://github.com/nlibjs/tsm/commit/44ba4312986f7f389cce69df350fe441f0505e83))
+- @types/node:20.12.7→20.14.10 ([8b9711c](https://github.com/nlibjs/tsm/commit/8b9711c8ef6e9c92eab5a919c8308d2cfa3d3bbe))
+- commander:11.1.0→12.1.0 ([0fe7fc7](https://github.com/nlibjs/tsm/commit/0fe7fc7b041563cc1f85839bece1df0e2eb97433))
+- esbuild:0.20.2→0.23.0 ([a259f0b](https://github.com/nlibjs/tsm/commit/a259f0bf001a83ddbaccdba8884f186e3d5daf70))
+- micromatch:4.0.5→4.0.7 ([3be43da](https://github.com/nlibjs/tsm/commit/3be43da98779607741da9b2852ae9f24a920515b))
+- lint-staged:14.0.1→15.2.7 ([76effad](https://github.com/nlibjs/tsm/commit/76effadb9d6798e275197801d94a0c58d9577f42))
+
 ## v0.1.1 (2023-09-02)
 
 ### Features
