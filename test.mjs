@@ -118,15 +118,34 @@ const files = [];
   }
 }
 
-let command = 'node';
-const loaderFile = new URL('./loader.mjs', import.meta.url);
-command += ` --experimental-loader=${loaderFile}`;
-if (coverage) {
-  command += ' --experimental-test-coverage';
+{
+  // --loader pattern
+  const loaderFile = new URL('./loader.mjs', import.meta.url);
+  let command = 'node';
+  command += ` --experimental-loader=${loaderFile}`;
+  if (coverage) {
+    command += ' --experimental-test-coverage';
+  }
+  command += ' --enable-source-maps';
+  command += ' --test';
+  for (const file of files) {
+    command += ` ${fileURLToPath(file)}`;
+  }
+  execSync(command, { cwd: rootDir, stdio: 'inherit', shell: true });
 }
-command += ' --enable-source-maps';
-command += ' --test';
-for (const file of files) {
-  command += ` ${fileURLToPath(file)}`;
+
+{
+  // --import pattern
+  const registerFile = new URL('./register.mjs', import.meta.url);
+  let command = 'node';
+  command += ` --import=${registerFile}`;
+  if (coverage) {
+    command += ' --experimental-test-coverage';
+  }
+  command += ' --enable-source-maps';
+  command += ' --test';
+  for (const file of files) {
+    command += ` ${fileURLToPath(file)}`;
+  }
+  execSync(command, { cwd: rootDir, stdio: 'inherit', shell: true });
 }
-execSync(command, { cwd: rootDir, stdio: 'inherit', shell: true });
