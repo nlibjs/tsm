@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.3 (2024-07-07)
+
+### Bug Fixes
+
+- publish register.mjs ([cc6fce1](https://github.com/nlibjs/tsm/commit/cc6fce16abbba52452b43972e87cb644ac08cb67))
+
 ## v0.1.2 (2024-07-07)
 
 ### Features
