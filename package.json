@@ -19,7 +19,7 @@
   "type": "module",
   "files": [
     "loader.mjs",
-    "test.mjs"
+    "register.mjs"
   ],
   "main": "./loader.mjs",
   "bin": {
