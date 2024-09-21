@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.0.0 (2024-09-21)
+
+### Breaking Changes
+
+- change the main ([442093f](https://github.com/nlibjs/tsm/commit/442093f2e4171d01ebc1c743ff75b2a49c28b3f3))
+
+
 ## v0.1.4 (2024-09-21)
 
 ### Tests
