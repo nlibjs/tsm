@@ -1,86 +1,54 @@
 {
-  "name": "@nlib/tsm",
-  "description": "Thin .ts/.mts loader & test runner",
-  "publishConfig": {
-    "access": "public"
-  },
-  "version": "0.1.3",
-  "license": "Apache-2.0",
-  "author": {
-    "name": "Kei Ito",
-    "email": "kei.itof@gmail.com",
-    "url": "https://gojabako.zone"
-  },
-  "homepage": "https://github.com/nlibjs/tsm",
-  "repository": "https://github.com/nlibjs/tsm",
-  "engines": {
-    "node": ">=18"
-  },
-  "type": "module",
-  "files": [
-    "loader.mjs",
-    "register.mjs"
-  ],
-  "main": "./loader.mjs",
-  "bin": {
-    "tsm-test": "./test.mjs",
-    "nlib-tsm-test": "./test.mjs"
-  },
-  "scripts": {
-    "lint": "eslint loader.mjs test",
-    "test": "run-s test:*",
-    "test:directory": "node test.mjs test/directory",
-    "test:pattern": "node test.mjs \"test/directory/**/*.test.mts\"",
-    "test:file": "node test.mjs \"test/directory/add.test.mts\"",
-    "test:exclude": "node test.mjs --exclude \"**/excluded\" -- test/exclude",
-    "test:coverage-off": "node test.mjs --nocoverage test/coverage-off",
-    "test:coverage-on": "node test.mjs --coverage test/coverage-on",
-    "test:cjs1": "node test.mjs test/bin/cjs1",
-    "test:cjs2": "node test.mjs test/bin/cjs2",
-    "test:mjs1": "node test.mjs test/bin/mjs1",
-    "test:mjs2": "node test.mjs test/bin/mjs2",
-    "version": "npx @nlib/changelog --output CHANGELOG.md && git add CHANGELOG.md"
-  },
-  "dependencies": {
-    "commander": "12.1.0",
-    "esbuild": "0.23.0",
-    "micromatch": "4.0.7"
-  },
-  "devDependencies": {
-    "@nlib/changelog": "0.3.1",
-    "@nlib/eslint-config": "3.20.5",
-    "@nlib/githooks": "0.2.0",
-    "@nlib/lint-commit": "1.0.1",
-    "@types/node": "20.14.10",
-    "eslint": "8.57.0",
-    "lint-staged": "15.2.7",
-    "npm-run-all": "4.1.5",
-    "prettier": "3.3.2",
-    "typescript-eslint": "7.15.0"
-  },
-  "eslintConfig": {
-    "extends": "@nlib/eslint-config",
-    "env": {
-      "node": true
-    },
-    "overrides": [
-      {
-        "files": [
-          "*.test.*"
-        ],
-        "rules": {
-          "@typescript-eslint/no-floating-promises": "off"
-        }
-      }
-    ]
-  },
-  "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown",
-    "**/*.*(m|c)+(j|t)s*(x)": "eslint"
-  },
-  "renovate": {
-    "extends": [
-      "github>nlibjs/renovate-config"
-    ]
-  }
+	"name": "@nlib/tsm",
+	"description": "Thin .ts/.mts loader & test runner",
+	"publishConfig": {
+		"access": "public"
+	},
+	"version": "0.1.3",
+	"license": "Apache-2.0",
+	"author": {
+		"name": "Kei Ito",
+		"email": "kei.itof@gmail.com",
+		"url": "https://gojabako.zone"
+	},
+	"homepage": "https://github.com/nlibjs/tsm",
+	"repository": "https://github.com/nlibjs/tsm",
+	"engines": {
+		"node": ">=18"
+	},
+	"type": "module",
+	"files": ["loader.mjs", "register.mjs"],
+	"main": "./loader.mjs",
+	"bin": {
+		"tsm-test": "./test.mjs",
+		"nlib-tsm-test": "./test.mjs"
+	},
+	"scripts": {
+		"lint": "biome lint",
+		"test": "run-s test:*",
+		"test:directory": "node test.mjs test/directory",
+		"test:pattern": "node test.mjs \"test/directory/**/*.test.mts\"",
+		"test:file": "node test.mjs \"test/directory/add.test.mts\"",
+		"test:exclude": "node test.mjs --exclude \"**/excluded\" -- test/exclude",
+		"test:coverage-off": "node test.mjs --nocoverage test/coverage-off",
+		"test:coverage-on": "node test.mjs --coverage test/coverage-on",
+		"test:cjs1": "node test.mjs test/bin/cjs1",
+		"test:cjs2": "node test.mjs test/bin/cjs2",
+		"test:mjs1": "node test.mjs test/bin/mjs1",
+		"test:mjs2": "node test.mjs test/bin/mjs2",
+		"version": "npx @nlib/changelog --output CHANGELOG.md && git add CHANGELOG.md"
+	},
+	"dependencies": {
+		"commander": "12.1.0",
+		"esbuild": "0.23.0",
+		"micromatch": "4.0.7"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.2",
+		"@types/node": "20.14.10",
+		"npm-run-all": "4.1.5"
+	},
+	"renovate": {
+		"extends": ["github>nlibjs/renovate-config"]
+	}
 }
