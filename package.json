@@ -44,7 +44,7 @@
 	"dependencies": {
 		"commander": "12.1.0",
 		"esbuild": "0.23.1",
-		"micromatch": "4.0.7"
+		"micromatch": "4.0.8"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.2",
