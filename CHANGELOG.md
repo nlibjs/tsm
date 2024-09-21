@@ -1,10 +1,29 @@
 # Changelog
 
+## v0.1.4 (2024-09-21)
+
+### Tests
+
+- delete the --experimental-loader pattern ([febdfd1](https://github.com/nlibjs/tsm/commit/febdfd19024670c10d19d9a7e8860d2b3a42c396))
+- fix test errors ([19d6e66](https://github.com/nlibjs/tsm/commit/19d6e6600626669e08f42aa37d187fcdcee090c8))
+
+### Continuous Integration
+
+- upgrade actions ([fe61761](https://github.com/nlibjs/tsm/commit/fe61761bd1856d2232e543ffb3fe9fa50e39970f))
+
+### Dependency Upgrades
+
+- micromatch:4.0.7→4.0.8 ([290d1cf](https://github.com/nlibjs/tsm/commit/290d1cf6802b4be02f1bc4952f7e3545ac43ddc3))
+- esbuild:0.23.0→0.23.1 ([d100a4b](https://github.com/nlibjs/tsm/commit/d100a4b8921d8935de398870b96d361ab4bf7980))
+- @types/node:20.14.10→22.5.5 ([85872fe](https://github.com/nlibjs/tsm/commit/85872fecc5d0ec3b9f73a3811a72c5d6bf5f87be))
+
+
 ## v0.1.3 (2024-07-07)
 
 ### Bug Fixes
 
 - publish register.mjs ([cc6fce1](https://github.com/nlibjs/tsm/commit/cc6fce16abbba52452b43972e87cb644ac08cb67))
+
 
 ## v0.1.2 (2024-07-07)
 
@@ -25,11 +44,13 @@
 - micromatch:4.0.5→4.0.7 ([3be43da](https://github.com/nlibjs/tsm/commit/3be43da98779607741da9b2852ae9f24a920515b))
 - lint-staged:14.0.1→15.2.7 ([76effad](https://github.com/nlibjs/tsm/commit/76effadb9d6798e275197801d94a0c58d9577f42))
 
+
 ## v0.1.1 (2023-09-02)
 
 ### Features
 
 - read fileURL without extension ([25218b9](https://github.com/nlibjs/tsm/commit/25218b9f50ad92803bdb8f201d498970cbf52060))
+
 
 ## v0.1.0 (2023-09-02)
 
@@ -57,6 +78,7 @@
 - @types/node:20.5.7→20.5.8 ([c5cd760](https://github.com/nlibjs/tsm/commit/c5cd760451225ddd25064f88aa89c9a8d6ac8d22))
 - @nlib/eslint-config:3.20.1→3.20.2 ([addfc34](https://github.com/nlibjs/tsm/commit/addfc3423bddc35b6458552b5c4a964c89bf723d))
 
+
 ## v0.0.4 (2023-09-01)
 
 ### Features
@@ -82,3 +104,5 @@
 ### Dependency Upgrades
 
 - uninstall mocha ([b0f62fe](https://github.com/nlibjs/tsm/commit/b0f62fea4b8dd70cc2032b8635863cc7508489f8))
+
+
