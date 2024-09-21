@@ -1,2 +1,3 @@
-import { register } from 'node:module';
-register('./loader.mjs', import.meta.url);
+//@ts-check
+import { register } from "node:module";
+register("./loader.mjs", import.meta.url);
