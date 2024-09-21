@@ -21,7 +21,7 @@
 		"loader.mjs",
 		"register.mjs"
 	],
-	"main": "./loader.mjs",
+	"main": "./register.mjs",
 	"bin": {
 		"tsm-test": "./test.mjs",
 		"nlib-tsm-test": "./test.mjs"
