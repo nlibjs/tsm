@@ -42,9 +42,9 @@ export const load = async (url, context, nextLoad) => {
 				format: "esm",
 				bundle: true,
 				write: false,
+				sourcemap: "inline",
 			};
 			if (sourceRoot) {
-				options.sourcemap = "inline";
 				options.sourceRoot = sourceRoot;
 			}
 			const result = await esbuild.build({ ...options, write: false });
