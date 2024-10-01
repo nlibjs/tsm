@@ -7,7 +7,7 @@ describe("trace", () => {
 	test("trace", () => {
 		const firstLine = getErrorStack().split("\n")[1].split(path.sep).join("/");
 		assert.ok(
-			firstLine.endsWith("/coverage-off/nested/getErrorStack.mts:3:13)"),
+			firstLine.endsWith("/coverage-off/nested/getErrorStack.mts:5:12)"),
 			`UnexpectedLocation: ${firstLine}`,
 		);
 	});
