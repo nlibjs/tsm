@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.0.1 (2024-10-01)
+
+### Features
+
+- enable sourcemap ([864923f](https://github.com/nlibjs/tsm/commit/864923f6eee9290e35d6d2eef90385663b655b00))
+
+
 ## v1.0.0 (2024-09-21)
 
 ### Breaking Changes
