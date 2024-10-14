@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.1.0 (2024-10-14)
+
+### Bug Fixes
+
+- omit nlib-tsm-test command ([cac6ab5](https://github.com/nlibjs/tsm/commit/cac6ab58c585c3b8798e670cf64804b0c3ea73f2))
+
+### Tests
+
+- fix a line number ([34aa2b3](https://github.com/nlibjs/tsm/commit/34aa2b3eb7ccf8e7f402d8c6e4167f5e6017da36))
+
+
 ## v1.0.1 (2024-10-01)
 
 ### Features
