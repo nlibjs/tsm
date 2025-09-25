@@ -41,7 +41,7 @@
 		"version": "npx @nlib/changelog --output CHANGELOG.md && git add CHANGELOG.md"
 	},
 	"dependencies": {
-		"commander": "13.1.0",
+		"commander": "14.0.1",
 		"esbuild": "0.25.10",
 		"micromatch": "4.0.8"
 	},
